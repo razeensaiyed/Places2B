@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Suggestions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF2F2;
+            margin: 0;
+            padding: 0;
+            color: #2D336B;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #A9B5DF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background-color: #7886C7 !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: #FFF2F2 !important;
+            font-weight: bold;
+        }
+        #search-bar {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #2D336B;
+            border-radius: 5px;
+            background-color: #FFF2F2;
+            color: #2D336B;
+        }
+        .list-group-item {
+            cursor: pointer;
+            background-color: #7886C7;
+            color: #FFF2F2;
+            border: 1px solid #2D336B;
+        }
+        .list-group-item:hover {
+            background-color: #2D336B;
+            color: #FFF2F2;
+        }
+    </style>
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Travel Suggestions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Search Bar-->
+    <div class="container my-5">
+        <h2 class="text-center">Find Travel Recommendations</h2>
+        <input type="text" id="search-bar" class="form-control mt-3" placeholder="Enter a city name...">
+        <ul id="suggestions-list" class="list-group mt-3"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBar = document.getElementById("search-bar");
+            const suggestionsList = document.getElementById("suggestions-list");
+            
+            const recommendations = {
+    "paris": ["Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral"],
+    "new york": ["Statue of Liberty", "Central Park", "Times Square"],
+    "tokyo": ["Shibuya Crossing", "Tokyo Tower", "Senso-ji Temple"],
+    "london": ["Big Ben", "London Eye", "Tower Bridge"],
+    "dubai": ["Burj Khalifa", "Palm Jumeirah", "Dubai Mall"],
+    "sydney": ["Sydney Opera House", "Bondi Beach", "Harbour Bridge"],
+    "melbourne": ["Federation Square", "Great Ocean Road", "Queen Victoria Market"],
+    "mumbai": ["Gateway of India", "Marine Drive", "Elephanta Caves"],
+    "delhi": ["Red Fort", "India Gate", "Qutub Minar"],
+    "rome": ["Colosseum", "Vatican City", "Trevi Fountain"],
+    "bangkok": ["Grand Palace", "Wat Arun", "Floating Markets"],
+    "hong kong": ["Victoria Peak", "Tsim Sha Tsui", "Lantau Island"],
+    "los angeles": ["Hollywood Sign", "Santa Monica Pier", "Universal Studios"],
+    "las vegas": ["The Strip", "Bellagio Fountains", "Fremont Street"],
+    "rio de janeiro": ["Christ the Redeemer", "Sugarloaf Mountain", "Copacabana Beach"],
+    "berlin": ["Brandenburg Gate", "Berlin Wall Memorial", "Museum Island"],
+    "frankfurt": ["Römerberg", "Palmengarten", "Goethe House"],
+    "osaka": ["Osaka Castle", "Dotonbori", "Universal Studios Japan"],
+    "kyoto": ["Fushimi Inari Shrine", "Kinkaku-ji", "Arashiyama Bamboo Forest"],
+    "san francisco": ["Golden Gate Bridge", "Alcatraz Island", "Fisherman's Wharf"]
+};
+            
+            searchBar.addEventListener("input", function () {
+                const city = searchBar.value.toLowerCase().trim();
+                suggestionsList.innerHTML = "";
+                
+                if (city && recommendations[city]) {
+                    recommendations[city].forEach(place => {
+                        const li = document.createElement("li");
+                        li.classList.add("list-group-item");
+                        li.textContent = place;
+                        suggestionsList.appendChild(li);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
